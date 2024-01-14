@@ -1,0 +1,19 @@
+{
+  "name": "node-cli-file-manager",
+  "version": "1.0.0",
+  "description": "This is a Node.js command-line interface (CLI) application that provides several file management functionalities. The user can choose from a menu of options to perform tasks like changing file extensions, renaming files, batch renaming, and batch removing characters from file names.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B-Alvin-A/node-cli-file-management-tool.git"
+  },
+  "author": "AlvinBetariza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/B-Alvin-A/node-cli-file-management-tool/issues"
+  },
+  "homepage": "https://github.com/B-Alvin-A/node-cli-file-management-tool#readme"
+}
