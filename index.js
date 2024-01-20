@@ -1,53 +1,21 @@
-const fs = require('fs/promises')
-const path = require('path')
-const readline = require('readline')
+const {
+    displayFiles,
+    listFiles,
+    changeFileExtension,
+    renameSingleFile,
+    batchRename,
+    batchRemoveCharacters
+} = require('./fileOperations')
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
-
-const clsoeInterface = () => {
-    rl.close()
-}
-
-const listFiles = async (directory) => {
-    const files = await fs.readdir(directory)
-    console.log('Files in the directory:')
-    files.forEach( (file, index) => console.log(`${index + 1}.${file}`))
-
-    const fullPath = files.map( file => path.join(directory, file) )
-    return fullPath
-}
-
-const askForNewExtension = async () => {
-    return new Promise((res) => {
-        rl.question('Enter the new file extension (including the dot): ', (ans) => {
-            res(ans)
-        })
-    })
-}
-
-const changeFileExtension = async (directory) => {
-    await listFiles(directory)
-    const newExtension = await askForNewExtension()
-    try{
-        const files = await fs.readdir(directory)
-
-        for(const file of files){
-            const oldFilePath = path.join(directory,file)
-            const fileName = path.parse(file).name
-    
-            const newFileName = `${fileName}${newExtension}`
-            const newFilePath = path.join(directory, newFileName)
-
-            await fs.rename(oldFilePath, newFilePath)
-            console.log(`Changed extension of ${file} to ${newFileName}`)
-        }
-    }catch(err){
-        console.error('Error: ',err)
-    }
-}
+const {
+    askForNewExtension,
+    askForFileSelection,
+    askForFileName,
+    askForGenericFileName,
+    askForIncrementalPosition,
+    askNumberOfCharactersToRemove,
+    askForOption
+} = require('./userPrompts')
 
 const main = async () => {
     while (true){
@@ -61,43 +29,32 @@ const main = async () => {
     
         switch (chosenOption){
             case '1':
-                await changeFileExtension('./testFolder')
+                await displayFiles('./testFolder')
+                const newExtension = await askForNewExtension()
+                await changeFileExtension('./testFolder',newExtension)
                 break
             case '2':
-                await console.log('testing choice 2')
+                await displayFiles('./testFolder')
+                const files = await listFiles('./testFolder')
+                const selectedFileIndex = await askForFileSelection(files)
+                const newFileName = await askForFileName(files[selectedFileIndex - 1])
+                await renameSingleFile('./testFolder', selectedFileIndex, newFileName)
                 break
             case '3':
-                await console.log('testing choice 3')
+                await displayFiles('./testFolder')
+                const genericFileName = await askForGenericFileName()
+                const position = await askForIncrementalPosition()
+                await batchRename('./testFolder', genericFileName, position)
                 break
             case '4':
-                await console.log('testing choice 4')
-                break
-            default:
-                console.log('Invalid option. Please select a valid option. [Enter number 1-4]')
+                await displayFiles('./testFolder')
+                const charsToRemove = await askNumberOfCharactersToRemove()
+                await batchRemoveCharacters('./testFolder', charsToRemove)
                 break
         }
     }
-    clsoeInterface()
-}
-
-const askForOption = async () => {
-    while (true){
-        const answwer = await askQuestion('Enter the option number (1-4): ')
-        
-        if(['1', '2', '3', '4'].includes(answwer)) return answwer
-
-        console.log('Invalid input. Please enter a valid option number.')
-    }
-}
-
-const askQuestion = async (qn) => {
-    return new Promise((res) => {
-        rl.question(qn, (ans) => {
-            res(ans.trim())
-        })
-    }) 
 }
 
 main().then( () => {
-    clsoeInterface()
+    closeInterface()
 })
