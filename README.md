@@ -26,9 +26,10 @@ This is a Node.js command-line interface (CLI) application that provides several
 ```bash
 git clone https://github.com/B-Alvin-A/node-cli-file-management-tool.git
 cd your-repository
+---
 
 
-Example Usage
+# Example Usage
 
 Change File Extensions
 
