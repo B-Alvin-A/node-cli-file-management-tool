@@ -90,7 +90,7 @@ const batchRemoveCharacters = async (directory, charsToRemove) => {
         
         try {
             await fs.rename(oldFilePath, newFilePath)
-            console.log(`${currentFileName} has been renamed to ${newFileName}`)
+            console.log(`removed ${charsToRemove} ${charsToRemove === 1 ? 'character' : 'characters'} from ${currentFileName}`)
         } catch (err) {
             console.error('Error: ', err) 
         }
