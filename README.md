@@ -26,3 +26,70 @@ This is a Node.js command-line interface (CLI) application that provides several
 ```bash
 git clone https://github.com/B-Alvin-A/node-cli-file-management-tool.git
 cd your-repository
+
+
+Example Usage
+
+Change File Extensions
+
+1. Change the extension of files in a given directory
+Enter the option number (1-4): 1
+
+Files in the directory:
+1. file1.png
+2. file2.png
+
+Enter the number of the file to select (1-2): 1
+Enter the new file extension (including the dot): .jpg
+
+file1.png has been renamed to file1.jpg
+
+
+Rename a Single File
+
+2. Rename a single file
+Enter the option number (1-4): 2
+
+Files in the directory:
+1. file1.txt
+2. file2.txt
+
+Enter the number of the file to select (1-2): 2
+Enter the new file name for file2.txt (press Enter to keep the current name): newFile.txt
+
+file2.txt has been renamed to newFile.txt
+
+
+Batch Rename Files
+
+3. Batch rename files in a given directory
+Enter the option number (1-4): 3
+
+Files in the directory:
+1. file1.txt
+2. file2.txt
+
+Enter the generic file name for batch renaming: newFile
+Enter the position for the incremental counter (start/end): start
+
+file1.txt has been renamed to newFile_1
+file2.txt has been renamed to newFile_2
+
+
+Batch Remove Characters
+
+4. Batch remove a said number of characters in a given folder
+Enter the option number (1-4): 4
+
+Files in the directory:
+1. file1.txt
+2. file2.txt
+
+Enter the number of characters to remove from the beginning of each file: 3
+
+Removed 3 characters from file1.txt
+Removed 3 characters from file2.txt
+
+
+
+** Feel free to customize the directory paths in the script to match your use case. Enjoy using the Node CLI File Management Tool! **
