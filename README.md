@@ -65,7 +65,7 @@ Files in the directory:
 2. file2.txt
 
 Enter the number of the file to select (1-2): 2
-Enter the new file name for file2.txt (press Enter to keep the current name): newFile.txt
+Enter the new file name for file2.txt (press Enter to keep the current name): newFile
 
 file2.txt has been renamed to newFile.txt
 
@@ -80,10 +80,10 @@ Files in the directory:
 2. file2.txt
 
 Enter the generic file name for batch renaming: newFile
-Enter the position for the incremental counter (start/end): start
+Enter the position for the incremental counter (start/end): end
 
-file1.txt has been renamed to newFile_1
-file2.txt has been renamed to newFile_2
+file1.txt has been renamed to newFile_1.txt
+file2.txt has been renamed to newFile_2.txt
 
 
 ### Batch Remove Characters
